@@ -1,26 +1,12 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { HelloWorldRes } from '../interfaces/HelloWorld';
+import { auth } from '../lib/firebase';
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<HelloWorldRes | null>(null);
-
-  // useEffect(() => {
-  //   const fetchData = async (): Promise<void> => {
-  //     try {
-  //       const response = await fetch("api/hello");
-  //       const data = (await response.json()) as HelloWorldRes;
-  //       setData(data);
-  //     } catch (error) {
-  //       console.error("Error occurred while fetching data", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   return (
     <>
       <Head>

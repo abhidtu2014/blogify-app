@@ -19,6 +19,7 @@ const Login: NextPage = (): JSX.Element => {
   }, [config, auth]);
 
   useEffect(() => {
+    // firebase UI can only be loaded when component mounts
     loadFirebaseui();
   }, []);
 
@@ -47,6 +48,7 @@ const Login: NextPage = (): JSX.Element => {
               Log in to Blogify!
             </h5>
           </div>
+          {/* Below DIV Renders Pre-built UI for Firebase Auth*/}
           <div id="firebaseui-auth-container"></div>
         </Card>
       </main>

@@ -10,4 +10,6 @@ docker tag $REPO_NAME $HOSTNAME/$GCP_PROJECT_NAME/$REPO_NAME:$IMAGE_TAG
 docker push $HOSTNAME/$GCP_PROJECT_NAME/$REPO_NAME:$IMAGE_TAG
 gcloud run deploy $REPO_NAME --image $HOSTNAME/$GCP_PROJECT_NAME/$REPO_NAME:$IMAGE_TAG \
   --project $GCP_PROJECT_NAME \
+  --platform managed \
   --region $GCP_REGION \
+  --allow-unauthenticated

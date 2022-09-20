@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { FC, useCallback } from 'react';
 
 import { Navbar } from 'flowbite-react';
+import { useAuth } from '../hooks/useAuth';
+import { AvatarDropDown } from './AvatarDropDown';
 
 interface HeaderProps {
   showLoginButton?: boolean;
@@ -11,6 +13,14 @@ export const Header: FC<HeaderProps> = ({ showLoginButton = true }): JSX.Element
   const handleLogin = useCallback((route: string) => {
     router.push(route);
   }, []);
+
+  const { user, uid, logout } = useAuth();
+
+  if (user && router.pathname === '/') {
+    // User already logged in, re-direct the user to /blogs instead
+    router.replace('/blogs');
+  }
+
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="#" onClick={() => handleLogin('/')}>
@@ -26,10 +36,16 @@ export const Header: FC<HeaderProps> = ({ showLoginButton = true }): JSX.Element
             Log in
           </Navbar.Link>
         )}
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        {uid ? (
+          <AvatarDropDown user={user} logout={logout} />
+        ) : (
+          <>
+            <Navbar.Link href="#">About</Navbar.Link>
+            <Navbar.Link href="#">Services</Navbar.Link>
+            <Navbar.Link href="#">Pricing</Navbar.Link>
+            <Navbar.Link href="#">Contact</Navbar.Link>
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
