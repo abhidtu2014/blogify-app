@@ -45,6 +45,7 @@ const useAuthContextProvider = (): AuthService => {
 
   const logout = useCallback(async () => {
     try {
+      setUserData(null);
       await auth.signOut();
       router.push('/');
     } catch (err) {

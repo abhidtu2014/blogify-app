@@ -11,6 +11,7 @@ export interface Blog {
   id: string;
   title: string;
   author: string;
+  owner: string;
   text: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;

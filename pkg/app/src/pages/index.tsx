@@ -17,14 +17,13 @@ const Home: NextPage = () => {
       <Header />
 
       <main
-        className="container mx-auto flex flex-col items-center justify-cente p-4"
-        style={{ height: 'calc(100vh - 128px)', justifyContent: 'center' }}
+        className="container mx-auto flex flex-col items-center justify-center p-4"
+        style={{ height: 'calc(100vh - 128px)' }}
       >
         <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
           Create <span className="text-purple-300">Blogs</span> Here
         </h1>
-        <p className="text-2xl text-gray-700">Coming soon!</p>
-        {/* {data ? <p>{data.text}</p> : <p>API Data Loading...</p>} */}
+        <p className="text-2xl text-gray-700">Please log in to start building your blogs</p>
       </main>
 
       <Footer />

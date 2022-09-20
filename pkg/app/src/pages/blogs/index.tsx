@@ -4,21 +4,25 @@ import { useCallback, useEffect, useState } from 'react';
 
 // Firebase
 import { db } from '../../lib/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, query, orderBy, limit } from 'firebase/firestore';
 
+import { Timeline } from 'flowbite-react';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { Blog } from '../../interfaces/db';
 import { Button } from 'flowbite-react';
-// import Tiptap from '../../components/TipTap';
+import { useRouter } from 'next/router';
+import { BlogsTimeLine } from '../../components/BlogsTimeLine';
 
 const Blogs: NextPage = (): JSX.Element => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const router = useRouter();
 
   // TODO: Handling of firestore can be moved to its own hook (useBlogs.tsx) or service (blogs.service.ts)
   useEffect(() => {
     const loadBlogs = async () => {
-      const querySnapshot = await getDocs(collection(db, 'blogs'));
+      const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'), limit(100));
+      const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
         const blogs = querySnapshot.docs.map(doc => doc.data());
         setBlogs(blogs as Blog[]);
@@ -27,7 +31,11 @@ const Blogs: NextPage = (): JSX.Element => {
     loadBlogs();
   }, []);
 
-  const handleCreateBlog = useCallback(() => {}, []);
+  const handleCreateBlog = useCallback(() => {
+    // Open Blog in Draft mode
+    const autoId = doc(collection(db, 'blogs')).id;
+    router.push(`blogs/${autoId}`);
+  }, []);
   const showExistingBlogs = !!blogs.length;
 
   return (
@@ -41,18 +49,25 @@ const Blogs: NextPage = (): JSX.Element => {
       <Header showLoginButton={false} />
 
       <main
-        className="container mx-auto flex flex-col items-center justify-cente p-4"
-        style={{ height: 'calc(100vh - 128px)', justifyContent: 'center' }}
+        className="container mx-auto flex flex-col justify-center p-4 scroll-smooth"
+        style={{ height: 'calc(100vh - 128px)' }}
       >
         <Button size="xl" onClick={handleCreateBlog}>
           Create New Blog
         </Button>
         {showExistingBlogs && (
-          <>
-            {
-              // TODO: Show Already Created blogs here
-            }
-          </>
+          <div className="container mt-10 flex" style={{ overflowY: 'scroll' }}>
+            <Timeline>
+              {blogs &&
+                blogs.map(blog => {
+                  return (
+                    <div key={blog.id}>
+                      <BlogsTimeLine blog={blog} />
+                    </div>
+                  );
+                })}
+            </Timeline>
+          </div>
         )}
       </main>
 

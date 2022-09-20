@@ -24,9 +24,15 @@ export const AvatarDropDown: FC<AvatarDropdownProps> = ({ user, logout }): JSX.E
         <span className="block text-sm">{user?.displayName}</span>
         <span className="block truncate text-sm font-medium">{user?.email}</span>
       </Dropdown.Header>
-      <Dropdown.Item>Dashboard</Dropdown.Item>
-      <Dropdown.Item>Settings</Dropdown.Item>
-      <Dropdown.Item>Earnings</Dropdown.Item>
+      <Dropdown.Item>
+        <p className="text-gray-400">Dashboard</p>
+      </Dropdown.Item>
+      <Dropdown.Item>
+        <p className="text-gray-400">Settings</p>
+      </Dropdown.Item>
+      <Dropdown.Item>
+        <p className="text-gray-400">Earnings</p>
+      </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
     </Dropdown>
