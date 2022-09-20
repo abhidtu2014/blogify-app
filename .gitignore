@@ -1,0 +1,15 @@
+# vs code
+.vscode
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env
+.env*.local
