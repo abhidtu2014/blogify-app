@@ -38,7 +38,7 @@ const Home: NextPage = () => {
           Create <span className="text-purple-300">Blogs</span> Here
         </h1>
         <p className="text-2xl text-gray-700">Coming soon!</p>
-        {data ? <p>{data.text}</p> : <p>API Data Loading...</p>}
+        {/* {data ? <p>{data.text}</p> : <p>API Data Loading...</p>} */}
       </main>
 
       <Footer />
