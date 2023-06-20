@@ -11,14 +11,15 @@ function defineNextConfig(config) {
   return config;
 }
 
+/** Put this in env variables and inject as runtime variable to avoid showing these values in source maps */
 const firebaseConfig = {
-  apiKey: 'AIzaSyBrhM-eNGlWBMlu5yZE-FuDXpH9bj21Guk',
-  authDomain: 'test-project-4b7e6.firebaseapp.com',
-  projectId: 'test-project-4b7e6',
-  storageBucket: 'test-project-4b7e6.appspot.com',
-  messagingSenderId: '113106008362',
-  appId: '1:113106008362:web:f1e120093135a84d654653',
-  measurementId: 'G-WH6LGR9JYV',
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_AUTH_DOMAIN',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
+  measurementId: '',
 };
 
 export default defineNextConfig({
