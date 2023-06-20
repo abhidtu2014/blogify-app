@@ -50,11 +50,9 @@ We will be using the following technologies as part of bootstrapping our applica
 Note: Below mentioned is a schema, which is good to start with w.r.t maintaining data for users, user’s blogs and some future functionalities supporting comments, replies, likes and views.
 
 
-<!--## Firestore structure
+## Firestore structure
 
-
-
-Link to diagram -->
+<img src="pkg/app/public/blogify-db-design.drawio.png">
 
 
 # Security
